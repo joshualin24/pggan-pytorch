@@ -173,7 +173,7 @@ class trainer:
         self.x_tilde = torch.FloatTensor(self.loader.batchsize, 3, self.loader.imsize, self.loader.imsize)
         self.real_label = torch.FloatTensor(self.loader.batchsize).fill_(1)
         self.fake_label = torch.FloatTensor(self.loader.batchsize).fill_(0)
-		
+                
         # enable cuda
         if self.use_cuda:
             self.z = self.z.cuda()
@@ -267,7 +267,7 @@ class trainer:
                 self.fx = self.D(self.x)
                 self.fx_tilde = self.D(self.x_tilde.detach())
                 
-		        loss_d = self.mse(self.fx.squeeze(), self.real_label) + \
+                loss_d = self.mse(self.fx.squeeze(), self.real_label) + \
                                   self.mse(self.fx_tilde, self.fake_label)
                 loss_d.backward()
                 self.opt_d.step()
